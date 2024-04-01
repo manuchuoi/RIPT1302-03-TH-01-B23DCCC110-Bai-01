@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <style>
+            #dongho {
+                font-size: 50px;
+                margin-top: 30%;
+                text-align: center;
+                color: rgb(0, 195, 255);
+                font-family: Lexend;
+                text-shadow: 2px 2px 4px #000000;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="dongho"></div>
+<script>
+    function startClock() {
+        var date = new Date();
+        var gio = date.getHours();
+        var phut = date.getMinutes();
+        var giay = date.getSeconds();
+        gio = checkTime(gio);
+        phut = checkTime(phut);
+        giay = checkTime(giay);
+        document.getElementById('dongho').innerHTML = gio + ":" + phut + ":" + giay;
+        setTimeout(startClock, 500);
+    }
+    function checkTime(i) {
+        if (i < 10) {i = "0" + i};
+        return i;
+    }
+    startClock();
+</script></body></html>

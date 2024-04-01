@@ -1,0 +1,14 @@
+<html><body><script>
+    function tinh(a,b,lenh = "cong"){
+        if (lenh === "cong"){
+            kqua= a + b
+        }else if (lenh === "tru"){
+            kqua= a-b
+        }else {
+            kqua = "lenh khong phu hop"
+        }
+    }
+    console.log(tinh(1,2))
+    console.log(tinh(3,2,lenh = "tru"))
+    console.log(tinh(3,4,lenh = "nhan"))
+</script></body></html>
