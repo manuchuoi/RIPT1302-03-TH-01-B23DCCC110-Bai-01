@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+            font-family: 'Times New Roman', Times, serif;
+        }
+    </style>
+</head>
+<body>
+    <table id="studentTable">
+        <tr>
+            <th>STT</th>
+            <th>Tên</th>
+            <th>Tuổi</th>
+            <th>Địa chỉ</th>
+            <th>SDT</th>
+            <th>Email</th>
+            <th>Lớp học</th>
+            <th>Chức năng</th>
+        </tr>
+    </table>
+    <button
+    onclick="addStudent()">Thêm sinh viên
+    </button>
+    <script>
+        var students = [
+            { STT: 1, Ten: "Nguyễn Văn A", Tuoi: 19, DiaChi: "Hà Nội", SDT: "0123456789", Email: "adeptrai@gmail.com", LopHoc: "D23CQCC01-B" },
+        ];
+        function displayStudents() {
+            var table = document.getElementById('studentTable');
+            var rowCount = table.rows.length;
+            for (var i = rowCount - 1; i > 0; i--) {
+                table.deleteRow(i);
+            }
+            for (var i = 0; i < students.length; i++) {
+                var student = students[i];
+                var row = table.insertRow();
+                row.insertCell().textContent = student.STT;
+                row.insertCell().textContent = student.Ten;
+                row.insertCell().textContent = student.Tuoi;
+                row.insertCell().textContent = student.DiaChi;
+                row.insertCell().textContent = student.SDT;
+                row.insertCell().textContent = student.Email;
+                row.insertCell().textContent = student.LopHoc;
+                row.insertCell().innerHTML = '<button onclick="editStudent(' + i + ')">Sửa</button> <button onclick="deleteStudent(' + i + ')">Xóa</button>';
+            }
+        }
+
+        function addStudent() {
+            var ten = prompt("Nhập tên sinh viên:");
+            var tuoi = parseInt(prompt("Nhập tuổi sinh viên:"));
+            var diaChi = prompt("Nhập địa chỉ sinh viên:");
+            var sdt = prompt("Nhập số điện thoại sinh viên:");
+            var email = prompt("Nhập email sinh viên:");
+            var lopHoc = prompt("Nhập lớp học sinh viên:");
+
+            students.push({
+                STT: students.length + 1,
+                Ten: ten,
+                Tuoi: tuoi,
+                DiaChi: diaChi,
+                SDT: sdt,
+                Email: email,
+                LopHoc: lopHoc
+            });
+
+            displayStudents();
+        }
+
+        function editStudent(index) {
+            var student = students[index];
+            var ten = prompt("Sửa tên sinh viên:", student.Ten);
+            var tuoi = parseInt(prompt("Sửa tuổi sinh viên:", student.Tuoi));
+            var diaChi = prompt("Sửa địa chỉ sinh viên:", student.DiaChi);
+            var sdt = prompt("Sửa số điện thoại sinh viên:", student.SDT);
+            var email = prompt("Sửa email sinh viên:", student.Email);
+            var lopHoc = prompt("Sửa lớp học sinh viên:", student.LopHoc);
+
+            students[index] = {
+                STT: student.STT,
+                Ten: ten,
+                Tuoi: tuoi,
+                DiaChi: diaChi,
+                SDT: sdt,
+                Email: email,
+                LopHoc: lopHoc
+            };
+
+            displayStudents();
+        }
+
+        function deleteStudent(index) {
+            students.splice(index, 1);
+            displayStudents();
+        }
+        
+        displayStudents();
+    </script>
+</body>
+</html>
